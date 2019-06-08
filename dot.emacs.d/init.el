@@ -18,24 +18,6 @@
 ;;;
 ;;; * C-x <Right> and C-x <Left>
 ;;;   winner-mode cycle windows.
-;;;
-;;; * C-x p
-;;;   Go back to the mark (set by C-<space>).
-;;;
-;;; * C-x r
-;;;   Open recent files.
-;;;
-;;; * Org Mode Bidings
-;;;   * C-c C-y
-;;;     Yank the link
-;;;   * C-x n s
-;;;     Focus on a headline
-;;;   * C-x n w
-;;;     Unfocus
-;;;   * C-c C-w
-;;;     refile
-;;;   * C-c C-x C-j
-;;;     go to running clock
 
 ;;; +============================================================+
 ;;; | Basic Utilities for Emacs Configuration                    |
@@ -51,6 +33,10 @@
 (require 'package)
 (package-initialize nil)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+
+;; A dedicate place for emacs `customize` interface
+(setq custom-file "~/.emacs.d/customize.el")
+(load custom-file)
 
 ;; Packages for bootstrapping the configuration
 (defmacro bootstrap-install (&rest packages)
@@ -74,6 +60,8 @@
 
 ;; Use load-dir to load the configuration directory which is set to
 ;; "~/.emacs.d/personal"
+;; Ensure that the general configuration is loaded first.
+(load "~/.emacs.d/general.el")
 (use-package load-dir :ensure t)
 (add-to-list 'load-dirs "~/.emacs.d/personal")
 (load-dirs)
@@ -105,6 +93,24 @@
 ;;  '(package-selected-packages
 ;;    (quote
 ;;     (ledger-mode nix-mode dockerfile-mode json-mode tide web-mode-edit-element clang-format cmake-ide rtags flycheck company protobuf-mode yaml-mode web-mode use-package toc-org solarized-theme smart-mode-line org-doing org-dashboard markdown-mode+ load-dir forecast fcitx exec-path-from-shell elm-mode ein cargo))))
+;; (custom-set-faces
+;;  ;; custom-set-faces was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  )
+
+;; (custom-set-variables
+;;  ;; custom-set-variables was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  '(custom-safe-themes
+;;    (quote
+;;     ("a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" default)))
+;;  '(package-selected-packages
+;;    (quote
+;;     (tabbar session pod-mode org muttrc-mode mutt-alias markdown-mode initsplit htmlize graphviz-dot-mode folding eproject diminish csv-mode browse-kill-ring boxquote bm bar-cursor apache-mode use-package load-dir))))
 ;; (custom-set-faces
 ;;  ;; custom-set-faces was added by Custom.
 ;;  ;; If you edit it by hand, you could mess it up, so be careful.
