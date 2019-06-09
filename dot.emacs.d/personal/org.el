@@ -57,10 +57,10 @@
 ;;;
 ;;; TODO(breakds): Research on :clock-in and :clock-resume
 (setq org-capture-templates
-      '(("t" "todo" entry (file "~/org/buffers.org")
+      '(("t" "todo" entry (file+headline "~/org/buffers.org" "Tasks")
          "* TODO %?\n%U\n%a\n")
-        ("f" "favorite" entry (file+datetree "~/org/buffers.org")
-         "* %? :FAVORITE:\n%U\n%a\n")))
+        ("f" "favorite" entry (file+headline "~/org/buffers.org" "Favorite")
+         "* %? :FAVORITE:\n%a\n")))
 
 ;;; +============================================================+
 ;;; | Agenda                                                     |
@@ -70,3 +70,26 @@
       (list "~/org/weride.org"
             "~/org/personal.org"
             "~/org/buffers.org"))
+
+;;; +============================================================+
+;;; | Refile                                                     |
+;;; + -----------------------------------------------------------+
+
+;;; Targets include this file and any agenda file, up to 3 levels.
+(setq org-refile-targets '((nil :maxlevel . 3)
+                           (org-agenda-files :maxlevel . 3)
+                           ("~/org/knowledge.org" :maxlevel . 2)))
+
+;;; However, targets with DONE state are EXCLUDED as refile targets.
+(setq org-refile-target-verify-function
+      (lambda ()
+        (not (member (nth 2 (org-heading-components))
+                     org-done-keywords))))
+
+;;; Refile to top-level is ALLOWED.
+(setq org-refile-use-outline-path 'file)
+
+;;; Allow refile to create parent tasks with confirmation
+(setq org-refile-allow-creating-parent-nodes 'confirm)
+
+
