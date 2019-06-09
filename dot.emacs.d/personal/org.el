@@ -1,0 +1,72 @@
+;;;; ============================================================+
+;;;; Org Mode Configurations                                     |
+;;;; ------------------------------------------------------------+
+;;;;
+
+;;; +============================================================+
+;;; | Key Bindings                                               |
+;;; + -----------------------------------------------------------+
+;;;
+;;; * C-c a
+;;;   Org Agenda
+;;;
+;;; * C-c o
+;;;   Main organizer file
+;;;
+;;; * C-c c
+;;;   Capture
+(global-set-key (kbd "C-c a") 'org-agenda)
+(global-set-key (kbd "C-c o") (lambda ()
+                                (interactive)
+                                (find-file "~/org/buffers.org")))
+(global-set-key (kbd "C-c c") 'org-capture)
+
+;;; +============================================================+
+;;; | High-level Configurations                                  |
+;;; + -----------------------------------------------------------+
+(use-package org
+  :config (setq org-startup-indented t))
+
+;;; TODO status and their styles
+(progn
+  (setq org-todo-keywords
+        '((sequence "TODO(t)" "ONGOING(g)" "PAUSE(p)" "|"
+                    "DONE(d)" "DELEGATED(l)" "CANCELLED(c@)")))
+  (setq org-todo-keyword-faces
+        '(("ONGOING" . (:foreground "blue" :weight bold))
+          ("PAUSE" . (:foreground "red" :weight bold))
+          ("DELEGATED" . (:foreground "orange" :weight bold)))))
+
+;;; Paste links from outside
+;;; Credit: https://pages.sachachua.com/.emacs.d/Sacha.html#orgfe5d909
+(defun org/yank-link ()
+  (interactive)
+  (insert "[[")
+  (yank)
+  (insert "][more]]"))
+(global-set-key (kbd "<f6>") 'org/yank-link)
+
+;;; +============================================================+
+;;; | Capture                                                    |
+;;; + -----------------------------------------------------------+
+
+;;; Where org-capture send the notes to
+(setq org-default-notes-file "~/org/buffers.org")
+
+;;; Templates
+;;;
+;;; TODO(breakds): Research on :clock-in and :clock-resume
+(setq org-capture-templates
+      '(("t" "todo" entry (file "~/org/buffers.org")
+         "* TODO %?\n%U\n%a\n")
+        ("f" "favorite" entry (file+datetree "~/org/buffers.org")
+         "* %? :FAVORITE:\n%U\n%a\n")))
+
+;;; +============================================================+
+;;; | Agenda                                                     |
+;;; + -----------------------------------------------------------+
+
+(setq org-agenda-files
+      (list "~/org/weride.org"
+            "~/org/personal.org"
+            "~/org/buffers.org"))

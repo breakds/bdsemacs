@@ -3,5 +3,6 @@ org-clock-save.el
 recentf
 savehist
 .lsp-session*
+bookmarks
 
 *~
