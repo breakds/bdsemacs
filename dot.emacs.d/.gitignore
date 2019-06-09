@@ -2,5 +2,6 @@ auto-save-list/
 org-clock-save.el
 recentf
 savehist
+.lsp-session*
 
 *~
