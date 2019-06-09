@@ -92,4 +92,12 @@
 ;;; Allow refile to create parent tasks with confirmation
 (setq org-refile-allow-creating-parent-nodes 'confirm)
 
+;;; +============================================================+
+;;; | Tags                                                       |
+;;; + -----------------------------------------------------------+
 
+(setq org-tag-alist '((:startgroup . nil)
+                      ("@work" . ?w)
+                      ("@home" . ?h)
+                      (:endgroup . nil)
+                      ("FAVORITE" . ?f)))
