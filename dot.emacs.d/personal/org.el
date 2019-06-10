@@ -46,6 +46,9 @@
   (insert "][more]]"))
 (global-set-key (kbd "<f6>") 'org/yank-link)
 
+;;; Save all org files every buffer.
+(add-hook 'after-save-hook 'org-save-all-org-buffers)
+
 ;;; +============================================================+
 ;;; | Capture                                                    |
 ;;; + -----------------------------------------------------------+
