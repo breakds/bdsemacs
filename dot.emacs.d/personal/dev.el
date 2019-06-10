@@ -17,7 +17,7 @@
 (modern-c++-font-lock-global-mode t)
 
 ;; Global clang-format key
-(require 'clang-format)
+(use-package clang-format :ensure t)
 (global-set-key [C-M-tab] 'clang-format-region)
 
 (defun clang-format-buffer-and-back-to-indentation ()

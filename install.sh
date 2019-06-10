@@ -10,15 +10,15 @@ function bdsemacs::install {
     local BACKUP="$HOME/Downloads/emacs_config_backup/$(date +%s)"
 
     if [[ -f "${DOTEMACS}" ]]; then
-	mkdir -p ${BACKUP}
-	mv ${DOTEMACS} ${BACKUP}
-	echo -e "[ ${GREEN}ok${NC} ] Backup ${DOTEMACS} to ${BACKUP}."
+        mkdir -p ${BACKUP}
+        mv ${DOTEMACS} ${BACKUP}
+        echo -e "[ ${GREEN}ok${NC} ] Backup ${DOTEMACS} to ${BACKUP}."
     fi
 
     if [[ -d "${DOTEMACSDOTD}" ]]; then
-	mkdir -p ${BACKUP}
-	mv ${DOTEMACSDOTD} ${BACKUP}
-	echo -e "[ ${GREEN}ok${NC} ] Backup ${DOTEMACSDOTD} to ${BACKUP}."
+        mkdir -p ${BACKUP}
+        mv ${DOTEMACSDOTD} ${BACKUP}
+        echo -e "[ ${GREEN}ok${NC} ] Backup ${DOTEMACSDOTD} to ${BACKUP}."
     fi
 
     # From https://stackoverflow.com/questions/59895/get-the-source-directory-of-a-bash-script-from-within-the-script-itself
@@ -26,10 +26,18 @@ function bdsemacs::install {
     echo ${DIR}/dot.emacs.d
     ln -s ${DIR}/dot.emacs.d ${DOTEMACSDOTD}
 
+    # Now, decide whether want to link epla/ for libraries as well.
+    list=("No\nYes")
+    choice=$(echo -e "$list" | dmenu -p "Link elpa as well? Recommend for Emacs 26+")
+    if [[ "$choice" = "Yes" ]]; then
+        ln -s ${DIR}/elpa26 ${DOTEMACSDOTD}/elpa
+        echo -e "[ ${GREEN}ok${NC} ] Linked ${DOTEMACSDOTD}/elpa."
+    fi
+    
     if [[ -d "${DOTEMACSDOTD}" ]]; then
-	echo -e "[${GREEN}done${NC}] Successfully installed."
+        echo -e "[${GREEN}done${NC}] Successfully installed."
     else
-	echo -e "[${RED}FAIL${NC}] Installation abort."
+        echo -e "[${RED}FAIL${NC}] Installation abort."
     fi
 }
 
