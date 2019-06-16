@@ -5,5 +5,6 @@ savehist
 .lsp-session*
 bookmarks
 elpa
+session.*
 
 *~

@@ -45,6 +45,17 @@
 ;;; Disable Toolbar.
 (tool-bar-mode -1)
 
+;;; Font
+;;;
+;;; If you really want to set it in your emacs configuration, use the
+;;; one below. However, it is not portable and incompatible if you are
+;;; sharing this eamcs configuration between displays of different
+;;; resolutions (i.e. A normal monitor and a HiDpi one).
+;;;
+;;; The recommended way is to set "emacs.font" in ~/.Xresources
+;;;
+(set-frame-font "DejaVu Sans Mono-10")
+
 ;;; Change backup directory, and SAVE A LOT.
 (setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
 (setq delete-old-versions -1)

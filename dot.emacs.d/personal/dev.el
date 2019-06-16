@@ -76,3 +76,54 @@
   :config (progn
             (push 'company-lsp company-backends)))
 
+;;; +============================================================+
+;;; | Python                                                     |
+;;; +------------------------------------------------------------+
+
+;;; Use 2-space tab to make code more compact
+(add-hook 'python-mode-hook
+          (function (lambda ()
+                      (setq indent-tabs-mode nil
+                            tab-width 2))))
+
+;;; Add support for Bazel/Skylark files.
+(add-to-list 'auto-mode-alist '("\\.BUILD" . python-mode))
+(add-to-list 'auto-mode-alist '("\\.bzl" . python-mode))
+(add-to-list 'auto-mode-alist '("BUILD" . python-mode))
+(add-to-list 'auto-mode-alist '("WORKSPACE" . python-mode))
+
+;;; Add support for jcon files.
+(add-to-list 'auto-mode-alist '("\\.jcon" . python-mode))
+
+;;; +============================================================+
+;;; | Protocol Buffer                                            |
+;;; +------------------------------------------------------------+
+
+(use-package protobuf-mode :ensure t)
+
+;;; +============================================================+
+;;; | Common Lisp                                                |
+;;; +------------------------------------------------------------+
+
+(use-package slime
+  :ensure t
+  :config (progn
+            (setq inferior-lisp-program "sbcl")
+            (slime-setup '(slime-fancy))))
+
+;;; +============================================================+
+;;; | Javascript/Typescript                                      |
+;;; +------------------------------------------------------------+
+
+(use-package web-mode :ensure t)
+
+(add-to-list 'auto-mode-alist '("\\.js$" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx$" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.ts$" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.tsx$" . web-mode))
+
+;;; +============================================================+
+;;; | ASM                                                        |
+;;; +------------------------------------------------------------+
+
+;;; TODO(breakds) Make this complete.
