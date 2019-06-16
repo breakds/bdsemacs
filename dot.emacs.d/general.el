@@ -54,7 +54,7 @@
 ;;;
 ;;; The recommended way is to set "emacs.font" in ~/.Xresources
 ;;;
-(set-frame-font "DejaVu Sans Mono-10")
+(set-frame-font "Fira Code-9")
 
 ;;; Change backup directory, and SAVE A LOT.
 (setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
