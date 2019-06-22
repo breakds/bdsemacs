@@ -26,7 +26,7 @@
     (interactive)
     (clang-format-buffer)
     (back-to-indentation))
-  
+
 (defun clang-format-bindings ()
   "Hijack the tab key to perform the function defined above,
   which is `clang-format-buffer-and-back-to-indentation`."
@@ -127,3 +127,11 @@
 ;;; +------------------------------------------------------------+
 
 ;;; TODO(breakds) Make this complete.
+
+;;; +============================================================+
+;;; | Git                                                        |
+;;; +------------------------------------------------------------+
+
+(use-package magit :ensure t)
+
+(global-set-key (kbd "C-x g") 'magit-status)
