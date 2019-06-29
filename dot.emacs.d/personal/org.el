@@ -59,7 +59,7 @@
 ;;; Templates
 ;;;
 ;;; TODO(breakds): Research on :clock-in and :clock-resume
-(defun bds-habit-default-schedule ()
+(defun bds/habit-default-schedule ()
   (format-time-string "SCHEDULED: <%Y-%m-%d %a +7d>"))
 
 (setq org-capture-templates
@@ -68,7 +68,7 @@
         ("f" "favorite" entry (file+headline "~/org/buffers.org" "Favorite")
          "* %? :FAVORITE:\n%a\n")
         ("h" "habit" entry (file+headline "~/org/buffers.org" "Tasks")
-         "* TODO %? :HABIT:\n%(bds-habit-default-schedule)\n:PROPERTIES:\n:STYLE: habit\n:END:\n")))
+         "* TODO %? :HABIT:\n%(bds/habit-default-schedule)\n:PROPERTIES:\n:STYLE: habit\n:END:\n")))
 
 ;;; +============================================================+
 ;;; | Agenda                                                     |
@@ -115,3 +115,11 @@
 ;;; + -----------------------------------------------------------+
 
 (setq org-habit-show-habits-only-for-today nil)
+
+;;; +============================================================+
+;;; | Archive                                                    |
+;;; + -----------------------------------------------------------+
+
+(defun bds/org-archive-all-done ()
+  (interactive)
+  (org-map-entries 'org-archive-subtree "/DONE/DELEGATED/CANCELLED" 'file))
