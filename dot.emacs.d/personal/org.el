@@ -79,6 +79,9 @@
             "~/org/personal.org"
             "~/org/buffers.org"))
 
+(setq org-agenda-span 10)
+(setq org-agenda-start-on-weekday 0)
+
 ;;; +============================================================+
 ;;; | Refile                                                     |
 ;;; + -----------------------------------------------------------+
