@@ -24,3 +24,14 @@
   (insert (format-time-string "<%Y-%m-%d %a>")))
 
 (global-set-key (kbd "C-c M-d") 'bds/insert-current-timestamp)
+
+;;; Helper Functions
+
+(defun bds/gc-buffers (path-pattern)
+  "Kill all the buffers whose file name path matches the input pattern."
+  (interactive "sEnter the path pattern: ")
+  (loop for buf in (buffer-list)
+        for path = (buffer-file-name buf)
+        when (and path
+                  (string-match-p path-pattern path))
+        do (kill-buffer buf)))
