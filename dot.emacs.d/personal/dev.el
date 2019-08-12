@@ -18,7 +18,7 @@
 
 ;; Global clang-format key
 (use-package clang-format :ensure t)
-(global-set-key [C-M-tab] 'clang-format-region)
+(global-set-key [C-M-tab] 'clang-format-buffer-and-back-to-indentation)
 
 (defun clang-format-buffer-and-back-to-indentation ()
   "Call clang-format to format the whole buffer, and move the
@@ -31,7 +31,7 @@
   "Hijack the tab key to perform the function defined above,
   which is `clang-format-buffer-and-back-to-indentation`."
   (define-key c++-mode-map [tab]
-    'clang-format-buffer-and-back-to-indentation))
+    'clang-format-region))
 
 (add-hook 'c++-mode-hook 'clang-format-bindings)
 
