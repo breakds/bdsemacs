@@ -135,3 +135,11 @@
 (use-package magit :ensure t)
 
 (global-set-key (kbd "C-x g") 'magit-status)
+
+;;; +============================================================+
+;;; | Ledger                                                     |
+;;; +------------------------------------------------------------+
+
+(use-package ledger-mode :ensure t
+  :config (progn
+            (add-to-list 'auto-mode-alist '("\\.journal$" . ledger-mode))))
