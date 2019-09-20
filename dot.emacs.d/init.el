@@ -34,6 +34,14 @@
 (package-initialize nil)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 
+;; There seems to be a bug for Emacs 26.1 and 26.2, so that it fails
+;; to download packages from "gnu" because of some tls certificate
+;; issue. This fixes that by using 163.com mirror if needed.
+;;
+;; (setq package-archives '(("gnu" . "http://mirrors.163.com/elpa/gnu/")
+;;                          ("melpa" . "https://melpa.org/packages/")
+;;                          ("org" . "http://orgmode.org/elpa/")))
+
 ;; A dedicate place for emacs `customize` interface
 (setq custom-file "~/.emacs.d/customize.el")
 (load custom-file)
