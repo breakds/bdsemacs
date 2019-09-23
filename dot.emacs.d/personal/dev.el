@@ -143,3 +143,9 @@
 (use-package ledger-mode :ensure t
   :config (progn
             (add-to-list 'auto-mode-alist '("\\.journal$" . ledger-mode))))
+
+;;; +============================================================+
+;;; | Nix                                                        |
+;;; +------------------------------------------------------------+
+
+(use-package nix-mode :ensure t)
