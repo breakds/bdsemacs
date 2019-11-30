@@ -108,7 +108,7 @@
 (use-package slime
   :ensure t
   :config (progn
-            (setq inferior-lisp-program "sbcl")
+            (setq inferior-lisp-program "quicklisp run")
             (slime-setup '(slime-fancy))))
 
 ;;; +============================================================+
