@@ -64,7 +64,7 @@
 
 (setq org-capture-templates
       '(("t" "todo" entry (file+headline "~/org/buffers.org" "Tasks")
-         "* TODO %?\n%U\n%a\n")
+         "* TODO %?\n")
         ("f" "favorite" entry (file+headline "~/org/buffers.org" "Favorite")
          "* %? :FAVORITE:\n%a\n")
         ("h" "habit" entry (file+headline "~/org/buffers.org" "Tasks")
