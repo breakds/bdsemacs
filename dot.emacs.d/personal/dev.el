@@ -108,8 +108,19 @@
 (use-package slime
   :ensure t
   :config (progn
+            ;; Use this instead of sbcl because in NixOS quicklisp
+            ;; wraps sbcl.
             (setq inferior-lisp-program "quicklisp run")
             (slime-setup '(slime-fancy))))
+
+;;; +============================================================+
+;;; | AucTeX                                                     |
+;;; +------------------------------------------------------------+
+
+(use-package tex
+  :defer t
+  :ensure auctex
+  :config (setq TeX-auto-save t))
 
 ;;; +============================================================+
 ;;; | Javascript/Typescript                                      |
