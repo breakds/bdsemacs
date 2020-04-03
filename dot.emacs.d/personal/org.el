@@ -27,6 +27,8 @@
 (use-package org
   :config (setq org-startup-indented t))
 
+(use-package ox-gfm :ensure t)
+
 ;;; TODO status and their styles
 (progn
   (setq org-todo-keywords
